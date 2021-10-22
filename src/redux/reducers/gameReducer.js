@@ -9,7 +9,8 @@ const initialState = {
   boxHeightArray: [],
   random: [],
   sprites: [],
-  check: true,
+  position: [],
+  spritePosition: [],
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -25,19 +26,16 @@ export const gameReducer = (state = initialState, action) => {
           .fill(null)
           .map((name) => Math.floor(Math.random() * action.payload.width) * 30),
       };
-
-    case "MOVE_RIGHT":
+    case "POSITION":
       return {
         ...state,
-        horizontal: (state.horizontal += 1),
+        position: action.payload,
       };
-    case "RANDOM":
+    case "SPRITE_POSITION":
       return {
         ...state,
-        random: Math.floor(Math.random() * action.payload) * 30,
-        check: false,
+        spritePosition: [...state.spritePosition, action.payload],
       };
-
     default:
       return state;
   }

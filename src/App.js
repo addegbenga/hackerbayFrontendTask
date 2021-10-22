@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import Form from "../src/components/form";
 import { useSelector, useDispatch } from "react-redux";
 import RandomSprite from "./components/Sprite";
-import store from "./store";
 export default function App() {
   const dispatch = useDispatch();
   const height = useSelector((state) => state.game.boardHeight);
+  const position = useSelector((state) => state.game.position);
   const width = useSelector((state) => state.game.boardWidth);
+  const sprites = useSelector((state) => state.game.sprites);
   const boxWidthArray = useSelector((state) => state.game.boxWidthArray);
   const boxHeightArray = useSelector((state) => state.game.boxHeightArray);
-  const horizontal = useSelector((state) => state.game.horizontal);
+
+  const [maxStep, setMaxStep] = useState(10);
   const [movement, setMovement] = useState({
     horizontal: 0,
     vertical: 0,
+    numSteps: 0,
   });
 
   const [innerBoxDimension, setInnerBoxDimension] = useState({
@@ -20,9 +23,18 @@ export default function App() {
     height: 30,
   });
 
-  // useEffect(()=>{
+  //check for number od steps
 
-  // })
+  useEffect(() => {
+    const sprite = document.querySelector(".sprites");
+    if (sprites.length > 0 && !sprite) {
+      window.alert(
+     "hello"
+      );
+    }
+  }, [position]);
+
+  //center the maze on page load
   useEffect(() => {
     setMovement({
       ...movement,
@@ -34,49 +46,77 @@ export default function App() {
   const moveMazeLeft = () => {
     setMovement({
       ...movement,
+      numSteps:
+        movement.horizontal === 0
+          ? movement.numSteps
+          : (movement.numSteps += 1),
       horizontal:
         movement.horizontal === 0
           ? movement.horizontal
           : (movement.horizontal -= 1),
     });
-    document.querySelector(".maze").style.left =
-      movement.horizontal * 30 + "px";
+    const maze = document.querySelector(".maze");
+    maze.style.left = movement.horizontal * 30 + "px";
+
+    dispatch({
+      type: "POSITION",
+      payload: { top: maze.offsetTop, left: maze.offsetLeft },
+    });
   };
   const moveMazeRight = () => {
     setMovement({
       ...movement,
+      numSteps:
+        movement.horizontal < width - 1
+          ? (movement.numSteps += 1)
+          : movement.numSteps,
       horizontal:
         movement.horizontal < width - 1
           ? (movement.horizontal += 1)
           : movement.horizontal,
     });
-
-    document.querySelector(".maze").style.left =
-      movement.horizontal * 30 + "px";
+    const maze = document.querySelector(".maze");
+    maze.style.left = movement.horizontal * 30 + "px";
+    dispatch({
+      type: "POSITION",
+      payload: { top: maze.offsetTop, left: maze.offsetLeft },
+    });
   };
   const moveMazeTop = () => {
     setMovement({
       ...movement,
+      numSteps:
+        movement.vertical === 0 ? movement.numSteps : (movement.numSteps += 1),
       vertical:
         movement.vertical === 0 ? movement.vertical : (movement.vertical -= 1),
     });
-    document.querySelector(".maze").style.top = movement.vertical * 30 + "px";
+    const maze = document.querySelector(".maze");
+    maze.style.top = movement.vertical * 30 + "px";
+    dispatch({
+      type: "POSITION",
+      payload: { top: maze.offsetTop, left: maze.offsetLeft },
+    });
   };
   const moveMazeBottom = () => {
     setMovement({
       ...movement,
+      numSteps:
+        movement.vertical < height - 1
+          ? (movement.numSteps += 1)
+          : movement.numSteps,
       vertical:
         movement.vertical < height - 1
           ? (movement.vertical += 1)
           : movement.vertical,
     });
-    document.querySelector(".maze").style.top = movement.vertical * 30 + "px";
-  };
+    const maze = document.querySelector(".maze");
+    maze.style.top = movement.vertical * 30 + "px";
 
-  // useEffect(() => {
-  //   const maze = document.querySelector(".maze");
-  //   console.log(maze.getBoundingClientRect());
-  // });
+    dispatch({
+      type: "POSITION",
+      payload: { top: maze.offsetTop, left: maze.offsetLeft },
+    });
+  };
 
   return (
     <div style={{ background: "gray", minHeight: "100vh" }}>

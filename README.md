@@ -1,5 +1,5 @@
-## Create dimension for the board and only render when a use renters width and height
-## prompt user to enter each box width and height size.
+## Create dimension for the board and only render when a use renters width and height  ***Done***
+## prompt user to enter each box width and height size. ***done***
 ## Create a random sprite for all the boxes
 ## Place a user on the center of the baord
 ## Set the control keys for moving the user 

@@ -9,7 +9,7 @@ const initialState = {
   boxHeightArray: [],
   random: [],
   sprites: [],
-  position: [],
+  position: { top: 0, left: 0 },
   spritePosition: [],
 };
 
@@ -24,7 +24,7 @@ export const gameReducer = (state = initialState, action) => {
         boxHeightArray: Array(Number(action.payload.height)).fill("box"),
         sprites: Array(Number(action.payload.width))
           .fill(null)
-          .map((name) => Math.floor(Math.random() * action.payload.width ) * 30 ),
+          .map((name) => Math.floor(Math.random() * action.payload.width) * 30),
       };
     case "POSITION":
       return {

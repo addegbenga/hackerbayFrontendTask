@@ -12,7 +12,7 @@ export default function Sprite() {
         ? item.remove()
         : ""
     );
-  }, [position]);
+  }, [position,sprites]);
 
   return (
     <>

@@ -61,7 +61,7 @@ export default function FormModal({
                 )}
               </h1>
               <p className="mb-2 text-sm text-white">
-                You took {steps} number of steps to eat all maze out of{" "}
+                You took {steps} steps to eat all maze out of{" "} max steps.
                 {maxStep}
               </p>
               <button

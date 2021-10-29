@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import Form from "../src/components/form";
 import { useSelector, useDispatch } from "react-redux";
@@ -32,6 +33,7 @@ export default function App() {
      "hello"
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
 
   //center the maze on page load
@@ -143,6 +145,8 @@ export default function App() {
               height: innerBoxDimension.height * height + "px",
               border: "0.1px solid red",
               position: "relative",
+              background:"red",
+              overflow:"hidden"
             }}
           >
             <div

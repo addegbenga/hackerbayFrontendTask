@@ -18,9 +18,10 @@ export default function Sprite() {
     <>
       {sprites?.map((item, index) => (
         <div
-          className="sprites"
+          className="sprites "
           key={index}
           style={{
+            overflow:"hidden",
             position: "absolute",
             left: item + "px",
             top: index * innerBoxHeight + "px",

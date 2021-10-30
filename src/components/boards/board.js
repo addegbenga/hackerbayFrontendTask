@@ -154,35 +154,6 @@ export default function Board() {
           }}
         >
           <div>
-            <div className="flex relative flex-col items-center justify-center mb-14  mt-7">
-              <div className="absolute">
-                <button
-                  className="bg-white rounded absolute right-3 bg-blue-200 focus-gray-200 text-black p-2"
-                  onClick={moveMazeLeft}
-                >
-                  <i className="fas fa-arrow-left"></i>
-                </button>
-
-                <button
-                  className="bg-white absolute -top-3 ring-gray rounded text-black p-2"
-                  onClick={moveMazeTop}
-                >
-                  <i className="fas fa-arrow-up"></i>
-                </button>
-                <button
-                  className="bg-white absolute left-10 focus-gray-200 bg-blue-200  text-black p-2 rounded "
-                  onClick={moveMazeRight}
-                >
-                  <i className="fas fa-arrow-right"></i>
-                </button>
-                <button
-                  className="bg-white absolute top-3 rounded focus-gray-200 text-black p-2"
-                  onClick={moveMazeBottom}
-                >
-                  <i className="fas fa-arrow-down"></i>
-                </button>
-              </div>
-            </div>
             <div
               style={{
                 marginTop: "2rem",
@@ -219,7 +190,7 @@ export default function Board() {
                     style={{
                       width: innerBoxDimension.width + "px",
                       height: innerBoxDimension.height + "px",
-                      border: "0.1px solid blue",
+                      border: "0.1px solid white",
                       position: "absolute",
                       left: index * innerBoxDimension.width + "px",
                     }}
@@ -240,7 +211,7 @@ export default function Board() {
                         style={{
                           width: innerBoxDimension.width + "px",
                           height: innerBoxDimension.height + "px",
-                          border: "0.1px solid pink",
+                          border: "0.1px solid white",
                           position: "absolute",
                           top: index * innerBoxDimension.width + "px",
                         }}
@@ -249,6 +220,35 @@ export default function Board() {
                   </div>
                 ))}
               </>
+            </div>
+            <div className="flex relative flex-col items-center justify-center mb-14  mt-7">
+              <div className="absolute">
+                <button
+                  className="bg-white rounded absolute right-3 bg-blue-200 focus-gray-200 text-black p-2"
+                  onClick={moveMazeLeft}
+                >
+                  <i className="fas fa-arrow-left"></i>
+                </button>
+
+                <button
+                  className="bg-white absolute -top-3 ring-gray rounded text-black p-2"
+                  onClick={moveMazeTop}
+                >
+                  <i className="fas fa-arrow-up"></i>
+                </button>
+                <button
+                  className="bg-white absolute left-10 focus-gray-200 bg-blue-200  text-black p-2 rounded "
+                  onClick={moveMazeRight}
+                >
+                  <i className="fas fa-arrow-right"></i>
+                </button>
+                <button
+                  className="bg-white absolute top-3 rounded focus-gray-200 text-black p-2"
+                  onClick={moveMazeBottom}
+                >
+                  <i className="fas fa-arrow-down"></i>
+                </button>
+              </div>
             </div>
           </div>
           {/* <div

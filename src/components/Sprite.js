@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function Sprite() {
   const sprites = useSelector((state) => state.game.sprites);
-  const innerBoxHeight = useSelector((state) => state.game.innerBoxHeight);
+  // const innerBoxHeight = useSelector((state) => state.game.innerBoxHeight);
   const position = useSelector((state) => state.game.position);
   useEffect(() => {
     const spriteArray = Array.from(document.querySelectorAll(".sprites"));
@@ -24,13 +24,13 @@ export default function Sprite() {
             overflow:"hidden",
             position: "absolute",
             left: item + "px",
-            top: index * innerBoxHeight + "px",
+            top: index * 40 + "px",
           }}
         >
           <img
             style={{
-              width: "20px",
-              height: "20px",
+              width: "30px",
+              height: "30px",
             }}
             src="/sprite.png"
             alt="sprite"

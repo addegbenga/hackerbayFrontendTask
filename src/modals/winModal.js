@@ -9,7 +9,6 @@ export default function FormModal({
   maxStep,
   openModal,
 }) {
-
   const handleCloseModal = () => {
     if (isOpen) return;
     closeModal();
@@ -61,8 +60,20 @@ export default function FormModal({
                 )}
               </h1>
               <p className="mb-2 text-sm text-white">
-                You took {steps} steps to eat all maze out of{" "} max steps.
-                {maxStep}
+                {steps < maxStep ? (
+                  <span>
+                    {" "}
+                    Congratulations You did great <br />it you took {steps} steps to eat
+                    all maze out of {maxStep} max steps.
+                  </span>
+                ) : (
+                  <span>
+                    {" "}
+                    You have exceeded the max number of step to eat all maze.
+                    <br />
+                    step taken:{steps} max step:{maxStep}
+                  </span>
+                )}
               </p>
               <button
                 onClick={() => window.location.reload()}

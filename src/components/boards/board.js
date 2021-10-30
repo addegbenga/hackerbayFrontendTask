@@ -23,17 +23,17 @@ export default function Board() {
   });
 
   const [innerBoxDimension, setInnerBoxDimension] = useState({
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
   });
 
   const handleCloseModal = () => {
     setIsModal(false);
   };
 
-  const handleOpenModal= ()=>{
-    setIsModal(true)
-  }
+  const handleOpenModal = () => {
+    setIsModal(true);
+  };
   const handleCloseResultModal = () => {
     setResultModal(false);
   };
@@ -42,6 +42,9 @@ export default function Board() {
 
   useEffect(() => {
     const sprite = document.querySelector(".sprites");
+    if (movement.numSteps > maxStep) {
+      setResultModal(true);
+    }
     if (sprites.length > 0 && !sprite) {
       setResultModal(true);
     }
@@ -70,7 +73,7 @@ export default function Board() {
           : (movement.horizontal -= 1),
     });
     const maze = document.querySelector(".maze");
-    maze.style.left = movement.horizontal * 30 + "px";
+    maze.style.left = movement.horizontal * 40 + "px";
 
     dispatch({
       type: "POSITION",
@@ -90,7 +93,7 @@ export default function Board() {
           : movement.horizontal,
     });
     const maze = document.querySelector(".maze");
-    maze.style.left = movement.horizontal * 30 + "px";
+    maze.style.left = movement.horizontal * 40 + "px";
     dispatch({
       type: "POSITION",
       payload: { top: maze.offsetTop, left: maze.offsetLeft },
@@ -105,7 +108,7 @@ export default function Board() {
         movement.vertical === 0 ? movement.vertical : (movement.vertical -= 1),
     });
     const maze = document.querySelector(".maze");
-    maze.style.top = movement.vertical * 30 + "px";
+    maze.style.top = movement.vertical * 40 + "px";
     dispatch({
       type: "POSITION",
       payload: { top: maze.offsetTop, left: maze.offsetLeft },
@@ -124,7 +127,7 @@ export default function Board() {
           : movement.vertical,
     });
     const maze = document.querySelector(".maze");
-    maze.style.top = movement.vertical * 30 + "px";
+    maze.style.top = movement.vertical * 40 + "px";
 
     dispatch({
       type: "POSITION",
@@ -139,7 +142,7 @@ export default function Board() {
         steps={movement.numSteps}
         maxStep={maxStep}
         closeModal={handleCloseResultModal}
-        openModal= {handleOpenModal}
+        openModal={handleOpenModal}
       />
       <FormModal isOpen={isModal} closeModal={handleCloseModal} />
       <div style={{ minHeight: "100vh", position: "relative" }}>
@@ -151,29 +154,34 @@ export default function Board() {
           }}
         >
           <div>
-            <h1 className="text-3xl ">Start playing Now</h1>
-            <div className="flex justify-between">
-              <button
-                className="bg-white text-black p-3 "
-                onClick={moveMazeRight}
-              >
-                Right
-              </button>
-              <button
-                className="bg-white text-black p-3"
-                onClick={moveMazeLeft}
-              >
-                Left
-              </button>
-              <button className="bg-white text-black p-3" onClick={moveMazeTop}>
-                Top
-              </button>
-              <button
-                className="bg-white text-black p-3"
-                onClick={moveMazeBottom}
-              >
-                Bottom
-              </button>
+            <div className="flex relative flex-col items-center justify-center mb-14  mt-7">
+              <div className="absolute">
+                <button
+                  className="bg-white rounded absolute right-3 bg-blue-200 focus-gray-200 text-black p-2"
+                  onClick={moveMazeLeft}
+                >
+                  <i className="fas fa-arrow-left"></i>
+                </button>
+
+                <button
+                  className="bg-white absolute -top-3 ring-gray rounded text-black p-2"
+                  onClick={moveMazeTop}
+                >
+                  <i className="fas fa-arrow-up"></i>
+                </button>
+                <button
+                  className="bg-white absolute left-10 focus-gray-200 bg-blue-200  text-black p-2 rounded "
+                  onClick={moveMazeRight}
+                >
+                  <i className="fas fa-arrow-right"></i>
+                </button>
+                <button
+                  className="bg-white absolute top-3 rounded focus-gray-200 text-black p-2"
+                  onClick={moveMazeBottom}
+                >
+                  <i className="fas fa-arrow-down"></i>
+                </button>
+              </div>
             </div>
             <div
               style={{
@@ -194,8 +202,8 @@ export default function Board() {
               >
                 <img
                   style={{
-                    width: "20px",
-                    height: "20px",
+                    width: "30px",
+                    height: "30px",
                   }}
                   src="/mario.png"
                   alt="mario"

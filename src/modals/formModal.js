@@ -68,11 +68,17 @@ export default function FormModal({ isOpen, closeModal }) {
             <div className="text-left py-8 px-3 w-full  transition-all transform  ">
               <h1 className="text-4xl mb-4 text-white">Maze game</h1>
               <p className="mb-2 text-white">
-                Create a board by entering the width and height e.g 10 by 10 grid
+                Create a board by entering the width and height e.g 10 by 10
+                grid <br />
+                <small className="text-xs text-green-400">
+                  RECOMMENDED GRID 10 BY 10 FOR EASE✨️{" "}
+                </small>
               </p>
               <form onSubmit={handleSubmit}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <label htmlFor="width " className="text-white">Please enter board width</label>
+                  <label htmlFor="width " className="text-white">
+                    Please enter board width
+                  </label>
                   <input
                     style={{ padding: "0.3rem" }}
                     type="number"
@@ -83,14 +89,15 @@ export default function FormModal({ isOpen, closeModal }) {
                   />
                 </div>
                 <div
-             
                   style={{
                     display: "flex",
                     marginTop: "1rem",
                     flexDirection: "column",
                   }}
                 >
-                  <label className="text-white" htmlFor="height">Please enter board height</label>
+                  <label className="text-white" htmlFor="height">
+                    Please enter board height
+                  </label>
                   <input
                     style={{ padding: "0.3rem" }}
                     type="number"
